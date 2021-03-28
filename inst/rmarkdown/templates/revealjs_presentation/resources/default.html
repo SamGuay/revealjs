@@ -16,6 +16,7 @@ $endif$
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="$revealjs-url$/dist/reset.css">
   <link rel="stylesheet" href="$revealjs-url$/dist/reveal.css"/>
 
 $if(highlightjs)$
@@ -524,14 +525,30 @@ $if(plugin-search)$
 	<script src="$revealjs-url$/plugin/search/search.js"></script>
 $endif$
 $if(plugin-zoom)$
-         <script src="$revealjs-url$/plugin/zoom-js/zoom.js"></script>
+	<script src="$revealjs-url$/plugin/zoom/zoom.js"></script>
 $endif$
 $if(plugin-chalkboard)$
-         <script src="$revealjs-url$/plugin/chalkboard/chalkboard.js"></script>
+  <script src="$revealjs-url$/plugin/chalkboard/plugin.js"></script>
 $endif$
 $if(plugin-menu)$
-         <script src="$revealjs-url$/plugin/menu/menu.js"></script>
+  <script src="$revealjs-url$/plugin/menu/menu.js"></script>
 $endif$
+$if(plugin-fullscreen)$
+  <script src="$revealjs-url$/plugin/fullscreen/plugin.js"></script>
+$endif$
+$if(plugin-audio-slideshow)$
+  <script src="$revealjs-url$/plugin/audio-slideshow/plugin.js"></script>
+  <script src="$revealjs-url$/plugin/audio-slideshow/recorder.js"></script>
+  <script src="$revealjs-url$/plugin/audio-slideshow/RecordRTC.js"></script>
+$endif$
+$if(plugin-animate)$
+  <script src="$revealjs-url$/plugin/animate/plugin.js"></script>
+  <script src="$revealjs-url$/plugin/animate/svg.min.js"></script>
+$endif$
+$if(plugin-embedtweet)$
+  <script src="$revealjs-url$/plugin/embed-tweet/plugin.js"></script>
+$endif$
+
 	<script>
 
       // Full list of configuration options available at:
@@ -836,40 +853,50 @@ $if(hideCursorTime)$
 				hideCursorTime: $hideCursorTime$
 $endif$
 
-$if(reveal_plugins)$
-				plugins: [$reveal_plugins$]
-$endif$
+        // Optional reveal.js plugins
+				plugins: [
+                  notes, search, zoom, chalkboard, menu, 
+                  $if(plugin-notes)$ RevealNotes,$endif$
+                  $if(plugin-search)$ RevealSearch,$endif$
+                  $if(plugin-zoom)$ RevealZoom,$endif$
+                  $if(plugin-chalkboard)$ RevealChalkboard,$endif$
+                  $if(plugin-menu)$ RevealMenu,$endif$
+                  $if(plugin-fullscreen)$ RevealFullscreen,$endif$
+                  $if(plugin-audio-slideshow)$ RevealAudioSlideshow, RevealAudioRecorder,$endif$
+                  $if(plugin-animate)$ RevealAnimate,$endif$
+                  $if(plugin-EmbedTweet)$ RevealEmbedTweet,$endif$
+				],
+
 $if(plugin-menu)$
-        	menu: {
+				menu: {
 $if(menu-side)$
-          	side: $menu-side$,
+					side: $menu-side$,
 $endif$   
 $if(menu-numbers)$
-          	numbers: $menu-numbers$,
+					numbers: $menu-numbers$,
 $endif$    
 $if(menu-titleSelector)$
-          	titleSelector: $menu-titleSelector$,
+					titleSelector: $menu-titleSelector$,
 $endif$    
 $if(menu-hideMissingTitles)$
-          	hideMissingTitles: $menu-hideMissingTitles$,
+					hideMissingTitles: $menu-hideMissingTitles$,
 $endif$    
 $if(menu-markers)$
-          	markers: $menu-markers$,
+					markers: $menu-markers$,
 $endif$    
 $if(menu-openButton)$
-          	openButton: $menu-openButton$,
+					openButton: $menu-openButton$,
 $endif$    
 $if(menu-openSlideNumber)$
-          	openSlideNumber: $menu-openSlideNumber$,
+					openSlideNumber: $menu-openSlideNumber$,
 $endif$    
 $if(menu-keyboard)$
-          	keyboard: $menu-keyboard$,
+					keyboard: $menu-keyboard$,
 $endif$ 
-						custom: false,
-						themes: false,
-						transitions: false
-        		},
-
+					custom: false,
+					themes: false,
+					transitions: false
+					},
 $endif$
 
 $if(plugin-chalkboard)$
@@ -884,7 +911,7 @@ $if(chalkboard-toggleNotesButton)$
           	toggleNotesButton: $chalkboard-toggleNotesButton$,
 $endif$
 $if(chalkboard-toggleChalkboardButton)$
-         	 toggleChalkboardButton: $chalkboard-toggleChalkboardButton$,
+         	 	toggleChalkboardButton: $chalkboard-toggleChalkboardButton$,
 $endif$
 $if(chalkboard-transition)$
           	transition: $chalkboard-transition$,
@@ -902,7 +929,6 @@ $if(chalkboard-pen)$
           	pen: $chalkboard-pen$,
 $endif$
 					},
-
 					keyboard: {
 						67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
 						66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
