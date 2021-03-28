@@ -2,7 +2,7 @@
 
 ⚠️⚠️⚠️
 
-## This fork of the reveal.js package for R was upgraded to reveal.js version 4.1.x.
+## This fork of the reveal.js package for R was upgraded to reveal.js version **4.1**
 
 It was upgraded on 2021-03-27
 ([commit cf8e64b](https://github.com/hakimel/reveal.js/commit/cf8e64bd8504737912b39e4153390cffbf443ed7)).
@@ -26,6 +26,9 @@ you notice any problem. I have tested some of the plugins quickly, and one bug I
 have noticed is the Zoom package can't be used in combination with the
 Chalkboard package.
 
+\* I haven't had the time to test all the newest config options, so feel free to
+test them out and report any issue.
+
 To use this forked package, you will have to install the
 [devtools package](https://github.com/r-lib/devtools) first and then:
 
@@ -38,7 +41,7 @@ devtools::install_github("samguay/revealjs")
 
 - [R Markdown Format for reveal.js Presentations](#r-markdown-format-for-revealjs-presentations)
   - [This fork of the reveal.js package for R was upgraded to reveal.js version
-    4.1.x
+    4.1
     ([commit](#this-fork-of-the-revealjs-package-for-r-was-upgraded-to-revealjs-version-41x-commit)
   - [Overview](#overview)
   - [Rendering](#rendering)
