@@ -1,40 +1,83 @@
-R Markdown Format for reveal.js Presentations
-================
+# R Markdown Format for reveal.js Presentations
 
+⚠️⚠️⚠️
+
+## This fork of the reveal.js package for R was upgraded to reveal.js version 4.1.x.
+
+It was upgraded on 2021-03-27
+([commit cf8e64b](https://github.com/hakimel/reveal.js/commit/cf8e64bd8504737912b39e4153390cffbf443ed7)).
+
+I also implemented a couple of new plugins from
+[rajgoel/reveal.js-plugins](https://github.com/rajgoel/reveal.js-plugins/), so
+now the list of _working_ plugins contains:
+
+- Animate
+- Audio-slideshow
+- Chalkboard
+- Embed-tweet
+- Fullscreen
+- Menu
+- Notes
+- Search
+- Zoom
+
+\* It is the first time I play with an R package, so feel free to open issues if
+you notice any problem. I have tested some of the plugins quickly, and one bug I
+have noticed is the Zoom package can't be used in combination with the
+Chalkboard package.
+
+To use this forked package, you will have to install the
+[devtools package](https://github.com/r-lib/devtools) first and then:
+
+```r
+# install.packages("devtools") # uncomment this line to install the devtools package.
+devtools::install_github("samguay/revealjs")
+```
+
+⚠️⚠️⚠️
+
+- [R Markdown Format for reveal.js Presentations](#r-markdown-format-for-revealjs-presentations)
+  - [This fork of the reveal.js package for R was upgraded to reveal.js version
+    4.1.x
+    ([commit](#this-fork-of-the-revealjs-package-for-r-was-upgraded-to-revealjs-version-41x-commit)
   - [Overview](#overview)
   - [Rendering](#rendering)
+    - [RStudio](#rstudio)
+    - [R Console](#r-console)
+    - [Command Line](#command-line)
   - [Display Modes](#display-modes)
   - [Incremental Bullets](#incremental-bullets)
   - [Appearance and Style](#appearance-and-style)
   - [Slide Transitions](#slide-transitions)
   - [Slide Backgrounds](#slide-backgrounds)
-  - [2-D Presentations](#d-presentations)
+  - [2-D Presentations](#2-d-presentations)
   - [Reveal Options](#reveal-options)
   - [Figure Options](#figure-options)
   - [MathJax Equations](#mathjax-equations)
   - [Document Dependencies](#document-dependencies)
   - [Reveal Plugins](#reveal-plugins)
   - [Advanced Customization](#advanced-customization)
+    - [Includes](#includes)
+    - [Pandoc Arguments](#pandoc-arguments)
   - [Shared Options](#shared-options)
 
 ## Overview
 
-This repository provides an [R Markdown](http://rmarkdown.rstudio.com)
-custom format for [reveal.js](https://revealjs.com/) HTML presentations.
+This repository provides an [R Markdown](http://rmarkdown.rstudio.com) custom
+format for [reveal.js](https://revealjs.com/) HTML presentations.
 
-You can use this format in R Markdown documents by installing this
-package as follows:
+You can use this format in R Markdown documents by installing this package as
+follows:
 
-``` r
+```r
 install.packages("revealjs", type = "source")
 ```
 
-To create a [reveal.js](https://revealjs.com/) presentation from R
-Markdown you specify the `revealjs_presentation` output format in the
-front-matter of your document. You can create a slide show broken up
-into sections by using the `#` and `##` heading tags (you can also
-create a new slide without a header using a horizontal rule (`----`).
-For example here’s a simple slide show:
+To create a [reveal.js](https://revealjs.com/) presentation from R Markdown you
+specify the `revealjs_presentation` output format in the front-matter of your
+document. You can create a slide show broken up into sections by using the `#`
+and `##` heading tags (you can also create a new slide without a header using a
+horizontal rule (`----`). For example here’s a simple slide show:
 
     ---
     title: "Habits"
@@ -42,35 +85,34 @@ For example here’s a simple slide show:
     date: March 22, 2005
     output: revealjs::revealjs_presentation
     ---
-    
+
     # In the morning
-    
+
     ## Getting up
-    
+
     - Turn off alarm
     - Get out of bed
-    
+
     ## Breakfast
-    
+
     - Eat eggs
     - Drink coffee
-    
+
     # In the evening
-    
+
     ## Dinner
-    
+
     - Eat spaghetti
     - Drink wine
-    
+
     ## Going to sleep
-    
+
     - Get in bed
     - Count sheep
 
 ## Rendering
 
-Depending on your use case, there are 3 ways you can render the
-presentation.
+Depending on your use case, there are 3 ways you can render the presentation.
 
 1.  RStudio
 2.  R console
@@ -78,27 +120,26 @@ presentation.
 
 ### RStudio
 
-When creating the presentation in RStudio, there will be a `Knit` button
-right below the source tabs. By default, it will render the current
-document and place the rendered `HTML` file in the same directory as the
-source file, with the same name.
+When creating the presentation in RStudio, there will be a `Knit` button right
+below the source tabs. By default, it will render the current document and place
+the rendered `HTML` file in the same directory as the source file, with the same
+name.
 
-Note: Unlike the the other slideshow outputs, the slideshow viewer popup
-from RStudio will be blank, to view the slide show click the `open in
-browser` button, and the slide show will render in your default web
-browser.
+Note: Unlike the the other slideshow outputs, the slideshow viewer popup from
+RStudio will be blank, to view the slide show click the `open in browser`
+button, and the slide show will render in your default web browser.
 
 ### R Console
 
-The `Knit` button is actually calling the `rmarkdown::render()`
-function. So, to render the document within the R console:
+The `Knit` button is actually calling the `rmarkdown::render()` function. So, to
+render the document within the R console:
 
-``` r
+```r
 rmarkdown::render('my_reveal_presentation.Rmd')
 ```
 
-There are many other output tweaks you can use by directly calling
-`render`. You can read up on the
+There are many other output tweaks you can use by directly calling `render`. You
+can read up on the
 [documentation](https://cran.r-project.org/web/packages/rmarkdown/rmarkdown.pdf)
 for more details.
 
@@ -106,18 +147,18 @@ for more details.
 
 When you need the presentation to be rendered from the command line:
 
-``` bash
+```bash
 Rscript -e "rmarkdown::render('my_reveal_presentation.Rmd')"
 ```
 
 ## Display Modes
 
-The following single character keyboard shortcuts enable alternate
-display modes:
+The following single character keyboard shortcuts enable alternate display
+modes:
 
-  - `'f'` enable fullscreen mode
+- `'f'` enable fullscreen mode
 
-  - `'o'` enable overview mode
+- `'o'` enable overview mode
 
 Pressing `Esc` exits all of these modes.
 
@@ -131,34 +172,30 @@ You can render bullets incrementally by adding the `incremental` option:
         incremental: true
     ---
 
-If you want to render bullets incrementally for some slides but not
-others you can use this syntax:
+If you want to render bullets incrementally for some slides but not others you
+can use this syntax:
 
     > - Eat eggs
     > - Drink coffee
 
 ## Appearance and Style
 
-There are several options that control the appearance of revealjs
-presentations:
+There are several options that control the appearance of revealjs presentations:
 
-  - `theme` specifies the theme to use for the presentation (available
-    themes are “default”, “simple”, “sky”, “beige”, “serif”,
-    “solarized”, “blood”, “moon”, “night”, “black”, “league” or
-    “white”).
+- `theme` specifies the theme to use for the presentation (available themes are
+  “default”, “simple”, “sky”, “beige”, “serif”, “solarized”, “blood”, “moon”,
+  “night”, “black”, “league” or “white”).
 
-  - `highlight` specifies the syntax highlighting style. Supported
-    styles include “default”, “tango”, “pygments”, “kate”, “monochrome”,
-    “espresso”, “zenburn”, and “haddock”. Pass null to prevent syntax
-    highlighting.
+- `highlight` specifies the syntax highlighting style. Supported styles include
+  “default”, “tango”, “pygments”, “kate”, “monochrome”, “espresso”, “zenburn”,
+  and “haddock”. Pass null to prevent syntax highlighting.
 
-  - `center` specifies whether you want to vertically center content on
-    slides (this defaults to false).
+- `center` specifies whether you want to vertically center content on slides
+  (this defaults to false).
 
-  - `smart` indicates whether to produce typographically correct output,
-    converting straight quotes to curly quotes, `---` to em-dashes, `--`
-    to en-dashes, and `...` to ellipses. Note that `smart` is enabled by
-    default.
+- `smart` indicates whether to produce typographically correct output,
+  converting straight quotes to curly quotes, `---` to em-dashes, `--` to
+  en-dashes, and `...` to ellipses. Note that `smart` is enabled by default.
 
 For example:
 
@@ -172,16 +209,16 @@ For example:
 
 ## Slide Transitions
 
-You can use the `transition` and `background_transition` options to
-specify the global default slide transition style:
+You can use the `transition` and `background_transition` options to specify the
+global default slide transition style:
 
-  - `transition` specifies the visual effect when moving between slides.
-    Available transitions are “default”, “fade”, “slide”, “convex”,
-    “concave”, “zoom” or “none”.
+- `transition` specifies the visual effect when moving between slides. Available
+  transitions are “default”, “fade”, “slide”, “convex”, “concave”, “zoom” or
+  “none”.
 
-  - `background_transition` specifies the background transition effect
-    when moving between full page slides. Available transitions are
-    “default”, “fade”, “slide”, “convex”, “concave”, “zoom” or “none”.
+- `background_transition` specifies the background transition effect when moving
+  between full page slides. Available transitions are “default”, “fade”,
+  “slide”, “convex”, “concave”, “zoom” or “none”.
 
 For example:
 
@@ -195,64 +232,60 @@ You can override the global transition for a specific slide by using the
 data-transition attribute, for example:
 
     ## Use a zoom transition {data-transition="zoom"}
-    
+
     ## Use a faster speed {data-transition-speed="fast"}
 
-You can also use different in and out transitions for the same slide,
-for example:
+You can also use different in and out transitions for the same slide, for
+example:
 
     ## Fade in, Slide out {data-transition="slide-in fade-out"}
-    
+
     ## Slide in, Fade out {data-transition="fade-in slide-out"}
 
 ## Slide Backgrounds
 
-Slides are contained within a limited portion of the screen by default
-to allow them to fit any display and scale uniformly. You can apply full
-page backgrounds outside of the slide area by adding a data-background
-attribute to your slide header element. Four different types of
-backgrounds are supported: color, image, video and iframe. Below are a
-few examples.
+Slides are contained within a limited portion of the screen by default to allow
+them to fit any display and scale uniformly. You can apply full page backgrounds
+outside of the slide area by adding a data-background attribute to your slide
+header element. Four different types of backgrounds are supported: color, image,
+video and iframe. Below are a few examples.
 
     ## CSS color background {data-background=#ff0000}
-    
+
     ## Full size image background {data-background="background.jpeg"}
-    
+
     ## Video background {data-background-video="background.mp4"}
-    
+
     ## Embed a web page as a background {data-background-iframe="https://example.com"}
 
-Backgrounds transition using a fade animation by default. This can be
-changed to a linear sliding transition by specifying the
-`background-transition: slide`. Alternatively you can set
-data-background-transition on any slide with a background to override
-that specific transition.
+Backgrounds transition using a fade animation by default. This can be changed to
+a linear sliding transition by specifying the `background-transition: slide`.
+Alternatively you can set data-background-transition on any slide with a
+background to override that specific transition.
 
 ## 2-D Presentations
 
-You can use the `slide_level` option to specify which level of heading
-will be used to denote individual slides. If `slide_level` is 2 (the
-default), a two-dimensional layout will be produced, with level 1
-headers building horizontally and level 2 headers building vertically.
-For example:
+You can use the `slide_level` option to specify which level of heading will be
+used to denote individual slides. If `slide_level` is 2 (the default), a
+two-dimensional layout will be produced, with level 1 headers building
+horizontally and level 2 headers building vertically. For example:
 
     # Horizontal Slide 1
-    
+
     ## Vertical Slide 1
-    
+
     ## Vertical Slide 2
-    
+
     # Horizontal Slide 2
 
-With this layout horizontal navigation will proceed directly from
-“Horizontal Slide 1” to “Horizontal Slide 2”, with vertical navigation
-to “Vertical Slide 1”, etc. presented as an option on “Horizontal Slide
-1”.
+With this layout horizontal navigation will proceed directly from “Horizontal
+Slide 1” to “Horizontal Slide 2”, with vertical navigation to “Vertical Slide
+1”, etc. presented as an option on “Horizontal Slide 1”.
 
 ## Reveal Options
 
-Reveal.js has many additional options to configure it’s behavior. You
-can specify any of these options using `reveal_options`, for example:
+Reveal.js has many additional options to configure it’s behavior. You can
+specify any of these options using `reveal_options`, for example:
 
     ---
     title: "Habits"
@@ -264,23 +297,23 @@ can specify any of these options using `reveal_options`, for example:
           previewLinks: true
     ---
 
-You can find documentation on the various available Reveal.js options
-here: <https://github.com/hakimel/reveal.js#configuration>.
+You can find documentation on the various available Reveal.js options here:
+<https://github.com/hakimel/reveal.js#configuration>.
 
 ## Figure Options
 
-There are a number of options that affect the output of figures within
-reveal.js presentations:
+There are a number of options that affect the output of figures within reveal.js
+presentations:
 
-  - `fig_width` and `fig_height` can be used to control the default
-    figure width and height (7x5 is used by default)
+- `fig_width` and `fig_height` can be used to control the default figure width
+  and height (7x5 is used by default)
 
-  - `fig_retina` Specifies the scaling to perform for retina displays
-    (defaults to 2, which currently works for all widely used retina
-    displays). Note that this only takes effect if you are using knitr
-    \>= 1.5.21. Set to `null` to prevent retina scaling.
+- `fig_retina` Specifies the scaling to perform for retina displays (defaults to
+  2, which currently works for all widely used retina displays). Note that this
+  only takes effect if you are using knitr \>= 1.5.21. Set to `null` to prevent
+  retina scaling.
 
-  - `fig_caption` controls whether figures are rendered with captions
+- `fig_caption` controls whether figures are rendered with captions
 
 For example:
 
@@ -295,19 +328,19 @@ For example:
 
 ## MathJax Equations
 
-By default [MathJax](http://www.mathjax.org/) scripts are included in
-reveal.js presentations for rendering LaTeX and MathML equations. You
-can use the `mathjax` option to control how MathJax is included:
+By default [MathJax](http://www.mathjax.org/) scripts are included in reveal.js
+presentations for rendering LaTeX and MathML equations. You can use the
+`mathjax` option to control how MathJax is included:
 
-  - Specify “default” to use an https URL from the official MathJax CDN.
+- Specify “default” to use an https URL from the official MathJax CDN.
 
-  - Specify “local” to use a local version of MathJax (which is copied
-    into the output directory). Note that when using “local” you also
-    need to set the `self_contained` option to false.
+- Specify “local” to use a local version of MathJax (which is copied into the
+  output directory). Note that when using “local” you also need to set the
+  `self_contained` option to false.
 
-  - Specify an alternate URL to load MathJax from another location.
+- Specify an alternate URL to load MathJax from another location.
 
-  - Specify null to exclude MathJax entirely.
+- Specify null to exclude MathJax entirely.
 
 For example, to use a local copy of MathJax:
 
@@ -340,11 +373,10 @@ To exclude MathJax entirely:
 ## Document Dependencies
 
 By default R Markdown produces standalone HTML files with no external
-dependencies, using data: URIs to incorporate the contents of linked
-scripts, stylesheets, images, and videos. This means you can share or
-publish the file just like you share Office documents or PDFs. If you’d
-rather keep dependencies in external files you can specify
-`self_contained: false`. For example:
+dependencies, using data: URIs to incorporate the contents of linked scripts,
+stylesheets, images, and videos. This means you can share or publish the file
+just like you share Office documents or PDFs. If you’d rather keep dependencies
+in external files you can specify `self_contained: false`. For example:
 
     ---
     title: "Habits"
@@ -353,18 +385,16 @@ rather keep dependencies in external files you can specify
         self_contained: false
     ---
 
-Note that even for self contained documents MathJax is still loaded
-externally (this is necessary because of it’s size). If you want to
-serve MathJax locally then you should specify `mathjax: local` and
-`self_contained: false`.
+Note that even for self contained documents MathJax is still loaded externally
+(this is necessary because of it’s size). If you want to serve MathJax locally
+then you should specify `mathjax: local` and `self_contained: false`.
 
-One common reason keep dependencies external is for serving R Markdown
-documents from a website (external dependencies can be cached separately
-by browsers leading to faster page load times). In the case of serving
-multiple R Markdown documents you may also want to consolidate dependent
-library files (e.g. Bootstrap, MathJax, etc.) into a single directory
-shared by multiple documents. You can use the `lib_dir` option to do
-this, for example:
+One common reason keep dependencies external is for serving R Markdown documents
+from a website (external dependencies can be cached separately by browsers
+leading to faster page load times). In the case of serving multiple R Markdown
+documents you may also want to consolidate dependent library files
+(e.g. Bootstrap, MathJax, etc.) into a single directory shared by multiple
+documents. You can use the `lib_dir` option to do this, for example:
 
     ---
     title: "Habits"
@@ -376,8 +406,8 @@ this, for example:
 
 ## Reveal Plugins
 
-You can enable various reveal.js plugins using the `reveal_plugins`
-option. Plugins currently supported include:
+You can enable various reveal.js plugins using the `reveal_plugins` option.
+Plugins currently supported include:
 
 | Plugin                                                                             | Description                                                                         |
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -387,9 +417,9 @@ option. Plugins currently supported include:
 | [chalkboard](https://github.com/rajgoel/reveal.js-plugins/tree/master/chalkboard)  | Include handwritten notes within a presentation.                                    |
 | [menu](https://github.com/denehyg/reveal.js-menu)                                  | Include a navigation menu within a presentation.                                    |
 
-Note that the use of plugins requires that the `self_contained` option
-be set to false. For example, this presentation includes both the
-“notes” and “search” plugins:
+Note that the use of plugins requires that the `self_contained` option be set to
+false. For example, this presentation includes both the “notes” and “search”
+plugins:
 
     ---
     title: "Habits"
@@ -399,8 +429,8 @@ be set to false. For example, this presentation includes both the
         reveal_plugins: ["notes", "search"]
     ---
 
-You can specify additional options for the `chalkboard` and `menu`
-plugins using `reveal_options`, for example:
+You can specify additional options for the `chalkboard` and `menu` plugins using
+`reveal_options`, for example:
 
     ---
     title: "Habits"
@@ -420,10 +450,10 @@ plugins using `reveal_options`, for example:
 
 ### Includes
 
-You can do more advanced customization of output by including additional
-HTML content or by replacing the core pandoc template entirely. To
-include content in the document header or before/after the document body
-you use the `includes` option as follows:
+You can do more advanced customization of output by including additional HTML
+content or by replacing the core pandoc template entirely. To include content in
+the document header or before/after the document body you use the `includes`
+option as follows:
 
     ---
     title: "Habits"
@@ -437,9 +467,9 @@ you use the `includes` option as follows:
 
 ### Pandoc Arguments
 
-If there are pandoc features you want to use that lack equivalents in
-the YAML options described above you can still use them by passing
-custom `pandoc_args`. For example:
+If there are pandoc features you want to use that lack equivalents in the YAML
+options described above you can still use them by passing custom `pandoc_args`.
+For example:
 
     ---
     title: "Habits"
@@ -457,19 +487,19 @@ Documentation on all available pandoc arguments can be found in the
 ## Shared Options
 
 If you want to specify a set of default options to be shared by multiple
-documents within a directory you can include a file named `_output.yaml`
-within the directory. Note that no YAML delimiters or enclosing output
-object are used in this file. For example:
+documents within a directory you can include a file named `_output.yaml` within
+the directory. Note that no YAML delimiters or enclosing output object are used
+in this file. For example:
 
 **\_output.yaml**
 
-``` yaml
+```yaml
 revealjs::revealjs_presentation:
   theme: sky
   transition: fade
   highlight: pygments
 ```
 
-All documents located in the same directory as `_output.yaml` will
-inherit it’s options. Options defined explicitly within documents will
-override those specified in the shared options file.
+All documents located in the same directory as `_output.yaml` will inherit it’s
+options. Options defined explicitly within documents will override those
+specified in the shared options file.
