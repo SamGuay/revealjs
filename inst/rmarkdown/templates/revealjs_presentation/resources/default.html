@@ -16,7 +16,7 @@ $endif$
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="$revealjs-url$/css/reveal.css"/>
+  <link rel="stylesheet" href="$revealjs-url$/dist/reveal.css"/>
 
 $if(highlightjs)$
 <link rel="stylesheet"
@@ -32,7 +32,7 @@ $highlighting-css$
 $endif$
 
 $if(theme)$
-<link rel="stylesheet" href="$revealjs-url$/css/theme/$theme$.css" id="theme">
+<link rel="stylesheet" href="$revealjs-url$/dist/theme/$theme$.css" id="theme">
 $endif$
 
 $if(theme-dark)$
@@ -481,15 +481,6 @@ ul, ol, div, p {
 </script>
 
 
-<script>
-var style = document.createElement( 'style' );
-style.type = 'text/css';
-var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
-var style_script = document.getElementById(style_script_id).text;
-style.innerHTML = style_script;
-document.getElementsByTagName('head')[0].appendChild(style);
-</script>
-
 $for(header-includes)$
     $header-includes$
 $endfor$
@@ -525,8 +516,7 @@ $body$
     </div>
   </div>
 
-  <script src="$revealjs-url$/lib/js/head.min.js"></script>
-  <script src="$revealjs-url$/js/reveal.js"></script>
+  <script src="$revealjs-url$/dist/reveal.js"></script>
 
   <script>
 
