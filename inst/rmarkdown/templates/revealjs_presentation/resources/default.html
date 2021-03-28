@@ -854,9 +854,7 @@ $if(hideCursorTime)$
 $endif$
 
         // Optional reveal.js plugins
-				plugins: [
-                  notes, search, zoom, chalkboard, menu, 
-                  $if(plugin-notes)$ RevealNotes,$endif$
+				plugins: [$if(plugin-notes)$ RevealNotes,$endif$
                   $if(plugin-search)$ RevealSearch,$endif$
                   $if(plugin-zoom)$ RevealZoom,$endif$
                   $if(plugin-chalkboard)$ RevealChalkboard,$endif$
@@ -865,7 +863,7 @@ $endif$
                   $if(plugin-audio-slideshow)$ RevealAudioSlideshow, RevealAudioRecorder,$endif$
                   $if(plugin-animate)$ RevealAnimate,$endif$
                   $if(plugin-EmbedTweet)$ RevealEmbedTweet,$endif$
-				],
+				          ],
 
 $if(plugin-menu)$
 				menu: {
