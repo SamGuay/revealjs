@@ -131,15 +131,15 @@ revealjs_presentation <- function(incremental = FALSE,
   
   
   # transition
-  transition <- match.arg(transition, revealjs_transitions())
-  args <- c(args, "--variable", paste("transition=", transition, sep=""))
+  # transition <- match.arg(transition, revealjs_transitions())
+  # args <- c(args, "--variable", paste("transition=", transition, sep=""))
   
   # background_transition
-  background_transition <- match.arg(background_transition, revealjs_transitions())
-  args <- c(args, "--variable", paste("backgroundTransition=", background_transition, sep=""))
+  # background_transition <- match.arg(background_transition, revealjs_transitions())
+  # args <- c(args, "--variable", paste("backgroundTransition=", background_transition, sep=""))
   
   # use history
-  args <- c(args, pandoc_variable_arg("history", "true"))
+  # args <- c(args, pandoc_variable_arg("history", "true"))
   
   # additional reveal options
   if (is.list(reveal_options)) {

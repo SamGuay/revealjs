@@ -192,12 +192,12 @@ $if(controlsTutorial)$
 $endif$
 $if(controlsLayout)$
 				// Determines where controls appear, "edges" or "bottom-right"
-				controlsLayout: '$controlsLayout$',
+				controlsLayout: $controlsLayout$,
 $endif$
 $if(controlsBackArrows)$
 				// Visibility rule for backwards navigation arrows; "faded", "hidden"
 				// or "visible"
-				controlsBackArrows: '$controlsBackArrows$',
+				controlsBackArrows: $controlsBackArrows$,
 $endif$
 $if(progress)$
 				// Display a presentation progress bar
@@ -225,7 +225,7 @@ $if(showSlideNumber)$
 				// - "all":      Always show the slide number
 				// - "print":    Only when printing to PDF
 				// - "speaker":  Only in the speaker view
-				showSlideNumber: '$showSlideNumber$',
+				showSlideNumber: $showSlideNumber$,
 $endif$
 $if(hashOneBasedIndex)$
 				// Use 1 based indexing for # links to match slide number (default is zero
@@ -306,7 +306,7 @@ $if(navigationMode)$
 				// If you're on slide 1.3 and navigate right, you will normally move
 				// from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
 				// from 1.3 -> 2.3.
-				navigationMode: '$navigationMode$',
+				navigationMode: $navigationMode$,
 $endif$
 $if(shuffle)$
 				// Randomizes the order of slides each time the presentation loads
@@ -366,7 +366,7 @@ $endif$
 $if(autoAnimateEasing)$
 				// Default settings for our auto-animate transitions, can be
 				// overridden per-slide or per-element via data arguments
-				autoAnimateEasing: '$autoAnimateEasing$',
+				autoAnimateEasing: $autoAnimateEasing$,
 $endif$
 $if(autoAnimateStyles)$
 				// Default settings for our auto-animate transitions, can be
@@ -430,15 +430,15 @@ $if(focusBodyOnPageVisibilityChange)$
 $endif$
 $if(transition)$
 				// Transition style
-				transition: '$transition$', // none/fade/slide/convex/concave/zoom
+				transition: $transition$, // none/fade/slide/convex/concave/zoom
 $endif$
 $if(transitionSpeed)$
 				// Transition speed
-				transitionSpeed: '$transitionSpeed$', // default/fast/slow
+				transitionSpeed: $transitionSpeed$, // default/fast/slow
 $endif$
 $if(backgroundTransition)$
 				// Transition style for full page slide backgrounds
-				backgroundTransition: '$backgroundTransition$', // none/fade/slide/convex/concave/zoom
+				backgroundTransition: $backgroundTransition$, // none/fade/slide/convex/concave/zoom
 $endif$
 $if(pdfMaxPagesPerSlide)$
 				// The maximum number of pages a single slide can expand onto when printing
@@ -520,7 +520,7 @@ $if(menu-keyboard)$
 $endif$
 					custom: false,
 					themes: false,
-					transitions: false
+					transitions: true
 					},
 $endif$
 
