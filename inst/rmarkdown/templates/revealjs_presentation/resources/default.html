@@ -44,64 +44,63 @@ $if(theme-dark)$
 </style>
 $endif$
 
-  <!-- some tweaks to reveal css -->
-  <style type="text/css">
-    .reveal h1 { font-size: 2.0em; }
-    .reveal h2 { font-size: 1.5em;  }
-    .reveal h3 { font-size: 1.25em;	}
-    .reveal h4 { font-size: 1em;	}
-
-    .reveal .slides>section,
-    .reveal .slides>section>section {
-      padding: 0px 0px;
-    }
-
-$if(center)$
-
+<!-- some tweaks to reveal css -->
+<style type="text/css">
+	.reveal h1 { font-size: 2.0em; }
+	.reveal h2 { font-size: 1.5em;  }
+	.reveal h3 { font-size: 1.25em;	}
+	.reveal h4 { font-size: 1em;	}
+	
+	.reveal .slides>section,
+	.reveal .slides>section>section {
+		padding: 0px 0px;
+	}
+	
+	$if(center)$
+	
 $else$
-     .reveal .title {
-        margin-top: 125px;
-        margin-bottom: 50px;
-     }
+	.reveal .title {
+		margin-top: 125px;
+		margin-bottom: 50px;
+	}
 $endif$
 
-    .reveal table {
-      border-width: 1px;
-      border-spacing: 2px;
-      border-style: dotted;
-      border-color: gray;
-      border-collapse: collapse;
-      font-size: 0.7em;
-    }
-
-    .reveal table th {
-      border-width: 1px;
-      padding-left: 10px;
-      padding-right: 25px;
-      font-weight: bold;
-      border-style: dotted;
-      border-color: gray;
-    }
-
-    .reveal table td {
-      border-width: 1px;
-      padding-left: 10px;
-      padding-right: 25px;
-      border-style: dotted;
-      border-color: gray;
-    }
-
+	.reveal table {
+		border-width: 1px;
+		border-spacing: 2px;
+		border-style: dotted;
+		border-color: gray;
+		border-collapse: collapse;
+		font-size: 0.7em;
+	}
+	
+	.reveal table th {
+		border-width: 1px;
+		padding-left: 10px;
+		padding-right: 25px;
+		font-weight: bold;
+		border-style: dotted;
+		border-color: gray;
+	}
+	
+	.reveal table td {
+		border-width: 1px;
+		padding-left: 10px;
+		padding-right: 25px;
+		border-style: dotted;
+		border-color: gray;
+	}
+	
 $if(plugin-menu)$
 $if(plugin-chalkboard)$
-    .reveal .slide-menu-button {
-      left: 105px !important;
-    }
+	.reveal .slide-menu-button {
+		left: 105px !important;
+	}
 $endif$
 $endif$
+</style>
 
-  </style>
-
-    <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">code{white-space: pre;}</style>
 
 $if(css)$
 $for(css)$
@@ -496,6 +495,27 @@ $endif$
 $if(parallaxBackgroundVertical)$
 				parallaxBackgroundVertical: $parallaxBackgroundVertical$
 $endif$
+$if(width)$
+				// The "normal" size of the presentation, aspect ratio will
+				// be preserved when the presentation is scaled to fit different
+				// resolutions. Can be specified using percentage units.
+				width: $width$,
+$endif$
+$if(height)$
+				height: $height$,
+$endif$
+$if(margin)$
+				// Factor of the display size that should remain empty around
+				// the content
+				margin: $margin$,
+$endif$
+$if(minScale)$
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: $minScale$,
+$endif$
+$if(maxScale)$
+				maxScale: $maxScale$,
+$endif$
 				// Optional reveal.js plugins
 				plugins: [$if(plugin-notes)$ RevealNotes,$endif$
                   $if(plugin-search)$ RevealSearch,$endif$
@@ -507,7 +527,6 @@ $endif$
                   $if(plugin-animate)$ RevealAnimate,$endif$
                   $if(plugin-embedtweet)$ RevealEmbedTweet,$endif$
 				          ],
-
 $if(plugin-menu)$
 				menu: {
 $if(menu-side)$
