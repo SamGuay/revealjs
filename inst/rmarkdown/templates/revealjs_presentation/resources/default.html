@@ -479,8 +479,24 @@ $if(hideCursorTime)$
 				// Time before the cursor is hidden (in ms)
 				hideCursorTime: $hideCursorTime$
 $endif$
-
-        // Optional reveal.js plugins
+$if(parallaxBackgroundImage)$
+				// Parallax background image
+				parallaxBackgroundImage: $parallaxBackgroundImage$, // e.g. "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg"
+$endif$
+$if(parallaxBackgroundSize)$
+				// Parallax background size
+				parallaxBackgroundSize: $parallaxBackgroundSize$, // CSS syntax, e.g. "2100px 900px" - currently only pixels are supported (don't use % or auto)
+$endif$
+$if(parallaxBackgroundHorizontal)$
+				// Number of pixels to move the parallax background per slide
+				// - Calculated automatically unless specified
+				// - Set to 0 to disable movement along an axis
+				parallaxBackgroundHorizontal: $parallaxBackgroundHorizontal$,
+$endif$
+$if(parallaxBackgroundVertical)$
+				parallaxBackgroundVertical: $parallaxBackgroundVertical$
+$endif$
+				// Optional reveal.js plugins
 				plugins: [$if(plugin-notes)$ RevealNotes,$endif$
                   $if(plugin-search)$ RevealSearch,$endif$
                   $if(plugin-zoom)$ RevealZoom,$endif$
